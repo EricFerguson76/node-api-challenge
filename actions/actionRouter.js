@@ -12,7 +12,7 @@ router.get('/:id', (req, res) => {
       res.status(200).json(actions);
     })
     .catch(() => {
-      rex.status(500).json({ message: 'Error retreiving actions' });
+      res.status(500).json({ message: 'Error retrieving actions' });
     });
 });
 
