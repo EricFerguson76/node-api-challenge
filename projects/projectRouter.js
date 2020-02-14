@@ -41,4 +41,24 @@ router.get('/id/actions', (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+  Projects.insert(req.body)
+    .then(newProject => {
+      res.status(200).json(newProject);
+    })
+    .catch(() => {
+      res.status(500).json({ message: 'Error adding project' });
+    });
+});
+
+router.post('/:id/actions', (req, res) => {
+  Actions.insert(...req.body, (project_id = req.params.id))
+    .then(newAction => {
+      res.status(201).json(newAction);
+    })
+    .catch(() => {
+      res.status(500).json({ message: 'Error adding project' });
+    });
+});
+
 module.exports = router;
