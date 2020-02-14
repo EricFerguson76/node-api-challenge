@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
       res.status(201).json(newAction);
     })
     .catch(() => {
-      res.status(500).json({ message: 'Error adding project' });
+      res.status(500).json({ message: 'Error adding action' });
     });
 });
 

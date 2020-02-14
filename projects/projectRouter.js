@@ -51,18 +51,6 @@ router.post('/', (req, res) => {
     });
 });
 
-router.post('/:id/actions', (req, res) => {
-  const actionInfo = { ...req.body, project_id: req.params.id };
-
-  Actions.insert(actionInfo)
-    .then(newAction => {
-      res.status(201).json(newAction);
-    })
-    .catch(() => {
-      res.status(500).json({ message: 'Error adding project' });
-    });
-});
-
 router.put('/:id', (req, res) => {
   Projects.update(req.params.id, req.body)
     .then(project => {
