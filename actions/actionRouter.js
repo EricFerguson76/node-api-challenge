@@ -16,6 +16,16 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+  Actions.insert(req.body)
+    .then(newAction => {
+      res.status(201).json(newAction);
+    })
+    .catch(() => {
+      res.status(500).json({ message: 'Error adding project' });
+    });
+});
+
 router.delete('/:id', (req, res) => {
   Actions.remove(req.param.id)
     .then(count => {

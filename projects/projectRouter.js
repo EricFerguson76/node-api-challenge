@@ -44,7 +44,7 @@ router.get('/id/actions', (req, res) => {
 router.post('/', (req, res) => {
   Projects.insert(req.body)
     .then(newProject => {
-      res.status(200).json(newProject);
+      res.status(201).json(newProject);
     })
     .catch(() => {
       res.status(500).json({ message: 'Error adding project' });
@@ -52,7 +52,9 @@ router.post('/', (req, res) => {
 });
 
 router.post('/:id/actions', (req, res) => {
-  Actions.insert(...req.body, (project_id = req.params.id))
+  const actionInfo = { ...req.body, project_id: req.params.id };
+
+  Actions.insert(actionInfo)
     .then(newAction => {
       res.status(201).json(newAction);
     })
